@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Keep the Schl folder
+!Schl/
+
+# Keep everything inside Schl
+!Schl/**
