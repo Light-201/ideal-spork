@@ -190,8 +190,6 @@
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background: #DB2777;
-    box-shadow: 0 0 10px #DB2777;
 }
 
 .subject-card hr {
@@ -223,6 +221,99 @@
     opacity: 0.7;
 }
 
+#trashicon{
+    margin-left: auto;
+    margin-right: 10px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@keyframes popupIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup .content {
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    position: relative;
+    animation: popupIn 0.2s ease;
+}
+
+
+#closePopup {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}   
+
+#maketodo {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #E5E5E5;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+}
+
+#subjectSelect {
+    min-width: 150px;
+    width: fit-content;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #E5E5E5;
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.confirm {
+    background: #6b9b784d;
+    margin-left: 40px;
+    width: 100px;
+    aspect-ratio: 3/1;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+select option {
+    background: #1f1f1f;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 14px;
+}
 /* Mobile layout */
 @media (max-width: 768px) {
     .timetable {

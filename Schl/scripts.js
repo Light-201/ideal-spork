@@ -99,4 +99,38 @@ var programe = null;
         showDay();
     });
     showDay();
+    const dropdown = document.getElementById("subjectSelect");
+
+    for (const subj in programe.Color_code) {
+        dropdown.add(new Option(subj, subj));
+    }
 })();
+
+const plusicon = document.getElementById("plusicon");
+const popup = document.querySelector(".popup");
+const closePopup = document.getElementById("closePopup");
+
+plusicon.addEventListener("click", () => {
+    popup.style.display = 'flex';
+});
+
+closePopup.addEventListener("click", () => {
+    popup.style.display = 'none';
+});
+
+const sbjcard = document.querySelector(".subject-card");
+const confirmBtn = document.querySelector(".confirm");
+const todolist = document.getElementsByClassName("todolist")[0];
+confirmBtn.addEventListener("click", () => {
+    const todoText = document.getElementById("maketodo").value;
+    const selectedSubject = document.getElementById("subjectSelect").value;
+
+    const clonecard = sbjcard.cloneNode(true);
+    clonecard.style.display = "block";
+    clonecard.querySelector("#subjectName").textContent = selectedSubject;
+    clonecard.querySelector("#contenttext").value = todoText;
+    const cirle = document.querySelector(".circle");
+    cirle.style.background = programe.Color_code[selectedSubject].color;
+    cirle.style.boxShadow = `0 0 10px ${programe.Color_code[selectedSubject].color}`;
+    todolist.appendChild(clonecard);
+})
