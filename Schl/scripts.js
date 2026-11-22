@@ -67,49 +67,36 @@ var programe = null;
             makecell(subj, colors, !!note, parent, note);
         }
     }
+    // Mobile
     const weekdays = Object.keys(programe.Days);
-let currentDay = 0;
-
+    let currentDay = 0;
     function showDay() {
         const day = weekdays[currentDay];
         const classes = programe.Days[day];
-
         document.getElementById("mobileDay").textContent = day;
-
         const container = document.getElementById("mobileClasses");
         container.innerHTML = "";
-
         classes.forEach((entry, index) => {
             const subj = typeof entry === "object" ? entry.sbj : entry;
             const note = typeof entry === "object" ? entry.note : "";
-
             const color = programe.Color_code[subj] ?? programe.Color_code["N/A"];
             const colors = [color.color, ...color.Text_colors];
-
             const period = document.createElement("div");
             period.className = "mobile-period";
-
             const number = document.createElement("span");
             number.textContent = index + 1;
-
             period.append(number);
-
             makecell(subj, colors, !!note, period, note);
-
             container.appendChild(period);
         });
     }
-
     document.getElementById("prevDay").addEventListener("click", () => {
         currentDay = (currentDay - 1 + weekdays.length) % weekdays.length;
         showDay();
     });
-
     document.getElementById("nextDay").addEventListener("click", () => {
         currentDay = (currentDay + 1) % weekdays.length;
         showDay();
     });
-
     showDay();
 })();
-

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1b3522">
 </head>
-<body style="background: linear-gradient(to top, #294e23, #151922, #151922, #294e23); margin: 0px; min-height: 100vh;">
+<body>
     <header class="trans cont">
         <div id="info">
             <h1 style="font-size: 25px; margin-left: 20px;">Weekly School Progame A'2</h1>
@@ -67,12 +67,32 @@
         <div class="cell" data-day="Friday" data-period="6"></div>
 
     </div>
-        <div id="mobileTimetable">
+    <!-- Mobile Timetable -->
+    <div id="mobileTimetable">
         <h2 id="mobileDay" style="margin-left: 20px;"></h2>
         <div id="mobileClasses"></div>
         <div class="day-navigation">
             <button class="trans btn" id="prevDay">Previous</button>
             <button class="trans btn" id="nextDay">Next</button>
+        </div>
+    </div>
+    <!------>
+    <div class="todolist trans">
+        <div class="cont" style="align-items: center;">
+            <h2>To-Do List</h2>
+            <svg id="plusicon" xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </div>
+        <hr style="margin: 0px 0px 20px 0px; border: 1px solid white">
+        <div class="subject-card">
+            <div class="cont1">
+                <div class="circle"></div>
+                <h5>Greek</h5>
+            </div>
+            <hr>
+            <textarea class="tdarea" readonly>sadwada</textarea>
         </div>
     </div>
     <script src="scripts.js"></script>
