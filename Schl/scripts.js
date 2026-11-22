@@ -1,5 +1,7 @@
 console.log('Started');
 
+const Header = document.getElementsByClassName("trans cont")[0];
+
 function getCells(day, period) {
     if (period && day) {
         return document.querySelector(
@@ -37,30 +39,77 @@ function makecell(subj, colors, hasnote, parent, notetxt) {
     div.style.backgroundColor  = colors[0];
 }
 var programe = null;
-(async function(){
+(async function () {
     const response = await fetch("./programe.json");
     programe = await response.json();
-
     const days = programe.Days;
-    const timetable = document.getElementsByClassName("timetable")[0];
-
+    const lastupd = document.createElement('p')
+    Header.appendChild(lastupd)
+    lastupd.textContent = "Last Updated: " + programe.last_updated
     for (const day in days) {
-        const classes = days[day];;
+        const classes = days[day];
         for (let i = 0; i < 6; i++) {
-            const subj = classes[i] ?? "N/A";
-            const color = programe.Color_code[subj] ?? programe.Color_code["N/A"];
-
+            const sbj = classes[i] ?? "N/A";
+            const subj = typeof sbj === "object"
+                ? sbj.sbj
+                : sbj;
+            const note = typeof sbj === "object"
+                ? sbj.note
+                : "";
+            const color = programe.Color_code[subj]
+                ?? programe.Color_code["N/A"];
             const colors = [
                 color.color,
                 ...color.Text_colors
             ];
-
-            const parent = getCells(day, i+1)
-
+            const parent = getCells(day, i + 1);
             if (!parent) continue;
-
-            makecell(subj, colors, false, parent, "");
+            makecell(subj, colors, !!note, parent, note);
         }
     }
+    const weekdays = Object.keys(programe.Days);
+let currentDay = 0;
+
+    function showDay() {
+        const day = weekdays[currentDay];
+        const classes = programe.Days[day];
+
+        document.getElementById("mobileDay").textContent = day;
+
+        const container = document.getElementById("mobileClasses");
+        container.innerHTML = "";
+
+        classes.forEach((entry, index) => {
+            const subj = typeof entry === "object" ? entry.sbj : entry;
+            const note = typeof entry === "object" ? entry.note : "";
+
+            const color = programe.Color_code[subj] ?? programe.Color_code["N/A"];
+            const colors = [color.color, ...color.Text_colors];
+
+            const period = document.createElement("div");
+            period.className = "mobile-period";
+
+            const number = document.createElement("span");
+            number.textContent = index + 1;
+
+            period.append(number);
+
+            makecell(subj, colors, !!note, period, note);
+
+            container.appendChild(period);
+        });
+    }
+
+    document.getElementById("prevDay").addEventListener("click", () => {
+        currentDay = (currentDay - 1 + weekdays.length) % weekdays.length;
+        showDay();
+    });
+
+    document.getElementById("nextDay").addEventListener("click", () => {
+        currentDay = (currentDay + 1) % weekdays.length;
+        showDay();
+    });
+
+    showDay();
 })();
 

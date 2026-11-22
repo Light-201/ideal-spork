@@ -4,61 +4,129 @@
         "Monday":[
             "Algebra",
             "Agriculture",
-            "Chemistry",
+            {
+                "sbj": "Chemistry",
+                "note": "Midterm: 14.12.26"
+            },
             "English",
             "S.E.P"
         ],
         "Tuesday":[
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class"
+            {
+                "sbj": "Greek",
+                "note": "WRITING MIDTERMS"
+            },
+            {
+                "sbj": "Greek",
+                "note": "Midterm: Next Week"
+            },
+            "Agriculture",
+            "Project",
+            "Physics",
+            "Architecture"
         ],
         "Wednesday":[
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class"
+            "Geometry",
+            {
+                "sbj": "P.E",
+                "note": "Wear Jeans."
+            },
+            "Greek",
+            "Greek",
+            {
+                "sbj": "Physics",
+                "note": "Midterm: 09.12.26"
+            }
         ],
         "Thursday":[
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class"
+            "S.E.P",
+            "Algebra",
+            {
+                "sbj": "P.P",
+                "note": "Midterm: 10.12.26"
+            },
+            "English",
+            "Health Ed",
+            "Computer Science"
         ],
         "Friday":[
-            "Class",
-            "Class",
-            "Class",
-            "Class",
-            "Class"
+            {
+                "sbj": "P.E",
+                "note": "Wear Jeans."
+            },
+            "Health Ed",
+            "P.P",
+            "Algebra",
+            {
+                "sbj": "History",
+                "note": "Midterm: 11.12.26"
+            }
         ]
     },
 
     "Color_code": {
         "N/A": {
-            "color": "#2e2d2d",
-            "Text_colors": ["#b3b3b3", "#b3b3b3"]
+            "color": "#2E2D2D",
+            "Text_colors": ["#B3B3B3", "#B3B3B3"]
         },
         "Algebra": {
-            "color": "#2563eb",
-            "Text_colors": ["#FFFFFF", "#DCEBFF"]
+            "color": "#2563EB",
+            "Text_colors": ["#FFFFFF", "#DBEAFE"]
         },
         "Geometry": {
             "color": "#7C3AED",
-            "Text_colors": ["#FFFFFF", "#E9D5FF"]
+            "Text_colors": ["#FFFFFF", "#EDE9FE"]
         },
-        "Computer_Science": {
+        "Computer Science": {
             "color": "#0891B2",
             "Text_colors": ["#FFFFFF", "#CFFAFE"]
         },
         "Greek": {
             "color": "#DB2777",
+            "Text_colors": ["#FFFFFF", "#FCE7F3"]
+        },
+        "Agriculture": {
+            "color": "#15803D",
+            "Text_colors": ["#FFFFFF", "#DCFCE7"]
+        },
+        "Chemistry": {
+            "color": "#D97706",
+            "Text_colors": ["#FFFFFF", "#FEF3C7"]
+        },
+        "English": {
+            "color": "#0F766E",
+            "Text_colors": ["#FFFFFF", "#CCFBF1"]
+        },
+        "S.E.P": {
+            "color": "#4F46E5",
+            "Text_colors": ["#FFFFFF", "#E0E7FF"]
+        },
+        "Project": {
+            "color": "#9333EA",
+            "Text_colors": ["#FFFFFF", "#F3E8FF"]
+        },
+        "Physics": {
+            "color": "#DC2626",
+            "Text_colors": ["#FFFFFF", "#FEE2E2"]
+        },
+        "Architecture": {
+            "color": "#475569",
+            "Text_colors": ["#FFFFFF", "#E2E8F0"]
+        },
+        "P.E": {
+            "color": "#EA580C",
+            "Text_colors": ["#FFFFFF", "#FFEDD5"]
+        },
+        "P.P": {
+            "color": "#A16207",
+            "Text_colors": ["#FFFFFF", "#FEF3C7"]
+        },
+        "Health Ed": {
+            "color": "#0D9488",
+            "Text_colors": ["#FFFFFF", "#CCFBF1"]
+        },
+        "History": {
+            "color": "#9D174D",
             "Text_colors": ["#FFFFFF", "#FCE7F3"]
         }
     }
