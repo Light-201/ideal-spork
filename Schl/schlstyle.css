@@ -50,9 +50,25 @@
 }
 
 .sbj {
-    border-radius: 10%; 
+    border-radius: 12px;
     height: 100%;
     width: 100%;
+    padding: 5px;
+}
+
+.title {
+    font-weight: bold;
+    margin: 5px 2px;
+}
+
+.sbj hr {
+    margin: 0px 0px;
+}
+
+.note {
+    font-weight:600;
+    font-size: 12px;
+    margin: 5px 2px;
 }
 
 body::-webkit-scrollbar{

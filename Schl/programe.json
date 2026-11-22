@@ -1,0 +1,65 @@
+{
+    "last_updated": "20.11.2026",
+    "Days": {
+        "Monday":[
+            "Algebra",
+            "Agriculture",
+            "Chemistry",
+            "English",
+            "S.E.P"
+        ],
+        "Tuesday":[
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class"
+        ],
+        "Wednesday":[
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class"
+        ],
+        "Thursday":[
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class"
+        ],
+        "Friday":[
+            "Class",
+            "Class",
+            "Class",
+            "Class",
+            "Class"
+        ]
+    },
+
+    "Color_code": {
+        "N/A": {
+            "color": "#2e2d2d",
+            "Text_colors": ["#b3b3b3", "#b3b3b3"]
+        },
+        "Algebra": {
+            "color": "#2563eb",
+            "Text_colors": ["#FFFFFF", "#DCEBFF"]
+        },
+        "Geometry": {
+            "color": "#7C3AED",
+            "Text_colors": ["#FFFFFF", "#E9D5FF"]
+        },
+        "Computer_Science": {
+            "color": "#0891B2",
+            "Text_colors": ["#FFFFFF", "#CFFAFE"]
+        },
+        "Greek": {
+            "color": "#DB2777",
+            "Text_colors": ["#FFFFFF", "#FCE7F3"]
+        }
+    }
+}
