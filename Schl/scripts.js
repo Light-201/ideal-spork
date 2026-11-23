@@ -133,4 +133,5 @@ confirmBtn.addEventListener("click", () => {
     cirle.style.background = programe.Color_code[selectedSubject].color;
     cirle.style.boxShadow = `0 0 10px ${programe.Color_code[selectedSubject].color}`;
     todolist.appendChild(clonecard);
+    popup.style.display = 'none';
 })
