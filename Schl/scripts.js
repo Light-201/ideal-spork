@@ -127,12 +127,59 @@ confirmBtn.addEventListener("click", () => {
 
     const clonecard = sbjcard.cloneNode(true);
     clonecard.style.display = "block";
-    clonecard.querySelector("#subjectName").textContent = selectedSubject;
-    clonecard.querySelector("#contenttext").value = todoText;
+    clonecard.querySelector(".subjectName").textContent = selectedSubject;
+    clonecard.querySelector(".contenttext").value = todoText;
     clonecard.id = `todo-${selectedSubject}`;
-    const cirle = document.querySelector(".circle");
+    const cirle = clonecard.querySelector(".circle");
     cirle.style.background = programe.Color_code[selectedSubject].color;
     cirle.style.boxShadow = `0 0 10px ${programe.Color_code[selectedSubject].color}`;
     todolist.appendChild(clonecard);
+    document.getElementById("maketodo").value = "";
+    document.getElementById("subjectSelect").value = "";
     popup.style.display = 'none';
 })
+document.addEventListener("click", event => {
+    if (event.target.closest(".delete")) {
+        const card = event.target.closest(".subject-card");
+        if (card) {
+            card.remove();
+        }
+    }
+});
+var editingCard = null;
+document.addEventListener("click", event => {
+    if (event.target.closest(".editicon")) {
+        const card = event.target.closest(".subject-card");
+
+        editingCard = card;
+
+        popup.style.display = "flex";
+        confirmBtn.style.display = "none";
+        document.querySelector(".edit").style.display = "block";
+
+        document.getElementById("maketodo").value =
+            card.querySelector(".contenttext").value;
+
+        document.getElementById("subjectSelect").value =
+            card.querySelector(".subjectName").textContent;
+    }
+});
+
+document.querySelector(".edit").addEventListener("click", () => {
+    if (!editingCard) return;
+
+    const todoText = document.getElementById("maketodo").value;
+    const selectedSubject = document.getElementById("subjectSelect").value;
+
+    editingCard.querySelector(".contenttext").value = todoText;
+    editingCard.querySelector(".subjectName").textContent = selectedSubject;
+
+    const color = programe.Color_code[selectedSubject].color;
+    const circle = editingCard.querySelector(".circle");
+
+    circle.style.background = color;
+    circle.style.boxShadow = `0 0 10px ${color}`;
+
+    popup.style.display = "none";
+    editingCard = null;
+});
