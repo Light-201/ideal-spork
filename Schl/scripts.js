@@ -121,65 +121,108 @@ closePopup.addEventListener("click", () => {
 const sbjcard = document.querySelector(".subject-card");
 const confirmBtn = document.querySelector(".confirm");
 const todolist = document.getElementsByClassName("todolist")[0];
-confirmBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("click", async () => {
     const todoText = document.getElementById("maketodo").value;
     const selectedSubject = document.getElementById("subjectSelect").value;
-
+    const response = await fetch("/api/todos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            subject: selectedSubject,
+            content: todoText
+        })
+    });
+    if (!response.ok) {
+        alert("Failed to save task!");
+        return;
+    }
+    const todo = await response.json();
     const clonecard = sbjcard.cloneNode(true);
     clonecard.style.display = "block";
-    clonecard.querySelector(".subjectName").textContent = selectedSubject;
-    clonecard.querySelector(".contenttext").value = todoText;
-    clonecard.id = `todo-${selectedSubject}`;
-    const cirle = clonecard.querySelector(".circle");
-    cirle.style.background = programe.Color_code[selectedSubject].color;
-    cirle.style.boxShadow = `0 0 10px ${programe.Color_code[selectedSubject].color}`;
+    clonecard.dataset.id = todo._id;
+    clonecard.querySelector(".subjectName").textContent = todo.subject;
+    clonecard.querySelector(".contenttext").value = todo.content;
+    const color = programe.Color_code[selectedSubject].color;
+    const circle = clonecard.querySelector(".circle");
+    circle.style.background = color;
+    circle.style.boxShadow = `0 0 10px ${color}`;
     todolist.appendChild(clonecard);
     document.getElementById("maketodo").value = "";
     document.getElementById("subjectSelect").value = "";
-    popup.style.display = 'none';
-})
-document.addEventListener("click", event => {
-    if (event.target.closest(".delete")) {
-        const card = event.target.closest(".subject-card");
-        if (card) {
-            card.remove();
-        }
+    popup.style.display = "none";
+});
+document.addEventListener("click", async (event) => {
+    const btn = event.target.closest(".delete");
+    if (!btn) return;
+    const card = btn.closest(".subject-card");
+    if (!card || !card.dataset.id) return;
+    const response = await fetch(`/api/todos/${card.dataset.id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        alert("Failed to delete task!");
+        return;
     }
+    card.remove();
 });
 var editingCard = null;
-document.addEventListener("click", event => {
-    if (event.target.closest(".editicon")) {
-        const card = event.target.closest(".subject-card");
-
-        editingCard = card;
-
-        popup.style.display = "flex";
-        confirmBtn.style.display = "none";
-        document.querySelector(".edit").style.display = "block";
-
-        document.getElementById("maketodo").value =
-            card.querySelector(".contenttext").value;
-
-        document.getElementById("subjectSelect").value =
-            card.querySelector(".subjectName").textContent;
-    }
+document.addEventListener("click", (event) => {
+    const btn = event.target.closest(".editicon");
+    if (!btn) return;
+    editingCard = btn.closest(".subject-card");
+    popup.style.display = "flex";
+    confirmBtn.style.display = "none";
+    document.querySelector(".edit").style.display = "block";
+    document.getElementById("maketodo").value =
+        editingCard.querySelector(".contenttext").value;
+    document.getElementById("subjectSelect").value =
+        editingCard.querySelector(".subjectName").textContent;
 });
-
-document.querySelector(".edit").addEventListener("click", () => {
+document.querySelector(".edit").addEventListener("click", async () => {
     if (!editingCard) return;
-
-    const todoText = document.getElementById("maketodo").value;
-    const selectedSubject = document.getElementById("subjectSelect").value;
-
-    editingCard.querySelector(".contenttext").value = todoText;
-    editingCard.querySelector(".subjectName").textContent = selectedSubject;
-
-    const color = programe.Color_code[selectedSubject].color;
+    const content = document.getElementById("maketodo").value;
+    const subject = document.getElementById("subjectSelect").value;
+    const response = await fetch(`/api/todos/${editingCard.dataset.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ subject, content })
+    });
+    if (!response.ok) {
+        alert("Failed to update task!");
+        return;
+    }
+    editingCard.querySelector(".subjectName").textContent = subject;
+    editingCard.querySelector(".contenttext").value = content;
+    const color = programe.Color_code[subject].color;
     const circle = editingCard.querySelector(".circle");
-
     circle.style.background = color;
     circle.style.boxShadow = `0 0 10px ${color}`;
-
-    popup.style.display = "none";
     editingCard = null;
+    popup.style.display = "none";
+    document.querySelector(".edit").style.display = "none";
+    confirmBtn.style.display = "block";
 });
+
+
+async function loadTodos() {
+    const response = await fetch("/api/todos");
+    const todos = await response.json();
+    todos.forEach(todo => {
+        const card = sbjcard.cloneNode(true);
+        card.style.display = "block";
+        card.dataset.id = todo._id;
+        card.querySelector(".subjectName").textContent = todo.subject;
+        card.querySelector(".contenttext").value = todo.content;
+        const color = programe.Color_code[todo.subject].color;
+        const circle = card.querySelector(".circle");
+        circle.style.background = color;
+        circle.style.boxShadow = `0 0 10px ${color}`;
+        todolist.appendChild(card);
+    });
+}
+
+loadTodos();
