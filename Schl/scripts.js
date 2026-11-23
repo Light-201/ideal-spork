@@ -129,6 +129,7 @@ confirmBtn.addEventListener("click", () => {
     clonecard.style.display = "block";
     clonecard.querySelector("#subjectName").textContent = selectedSubject;
     clonecard.querySelector("#contenttext").value = todoText;
+    clonecard.id = `todo-${selectedSubject}`;
     const cirle = document.querySelector(".circle");
     cirle.style.background = programe.Color_code[selectedSubject].color;
     cirle.style.boxShadow = `0 0 10px ${programe.Color_code[selectedSubject].color}`;
