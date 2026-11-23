@@ -11,7 +11,7 @@ app.use(cors({
     origin: "https://YOUR-USERNAME.github.io"
 }));
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "timetable.html"));
+    res.sendFile(path.join(__dirname, "Timetable.html"));
 });
 
 // GET: Load all todos
