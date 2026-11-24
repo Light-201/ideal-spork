@@ -12,10 +12,7 @@
             "S.E.P"
         ],
         "Tuesday":[
-            {
-                "sbj": "Greek",
-                "note": "WRITING MIDTERMS"
-            },
+            "Greek",
             {
                 "sbj": "Greek",
                 "note": "Midterm: Next Week"
@@ -29,9 +26,12 @@
             "Geometry",
             {
                 "sbj": "P.E",
-                "note": "Wear Jeans."
+                "note": "Dont Wear Jeans."
             },
-            "Greek",
+            {
+                "sbj": "Greek",
+                "note": "WRITING MIDTERMS"
+            },
             "Greek",
             {
                 "sbj": "Physics",
@@ -52,7 +52,7 @@
         "Friday":[
             {
                 "sbj": "P.E",
-                "note": "Wear Jeans."
+                "note": "Dont Wear Jeans."
             },
             "Health Ed",
             "P.P",
